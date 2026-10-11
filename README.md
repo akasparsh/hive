@@ -3,7 +3,7 @@
 A real-time collaborative workspace where teams create rooms t0 chat live,
 share files, see who's online, and track activity.
 
-> Status: 🚧 Phase 0 - project setup
+Status: 🚧 Phase 1 - frontend core
 
 ## Why this project exists
 
