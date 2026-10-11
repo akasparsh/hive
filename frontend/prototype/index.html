@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Hive: real-time rooms for teams and study groups." />
+    <title>Hive</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="app.js" defer></script>
+</head>
+<body>
+<div class="app">
+
+    <nav class="sidebar" aria-label="Rooms">
+        <header class="sidebar__header">
+            <h1 class="logo">🐝 Hive</h1>
+            <button type="button" id="new-room-btn">+ New room</button>
+        </header>
+
+        <ul class="room-list" id="room-list">
+            <li><a href="#" class="room-link room-link--active" aria-current="page"># study-group</a></li>
+            <li><a href="#" class="room-link"># project-alpha</a></li>
+            <li><a href="#" class="room-link"># random</a></li>
+        </ul>
+    </nav>
+
+    <main class="chat">
+        <header class="chat__header">
+            <h2 id="room-title"># study-group</h2>
+            <p class="chat__subtitle">Algorithms prep, every Tuesday</p>
+        </header>
+
+        <section class="messages" id="messages" aria-label="Messages" aria-live="polite">
+            <article class="message">
+                <p class="message__meta">
+                    <strong class="message__author">Ana</strong>
+                    <time datetime="2026-10-11T09:30:00Z">9:30 AM</time>
+                </p>
+                <p class="message__text">Hey everyone, ready for Tuesday?</p>
+            </article>
+
+            <article class="message message--own">
+                <p class="message__meta">
+                    <strong class="message__author">You</strong>
+                    <time datetime="2026-10-11T09:31:00Z">9:31 AM</time>
+                </p>
+                <p class="message__text">Yes! I'll bring the graph problems.</p>
+            </article>
+        </section>
+
+        <form class="composer" id="composer">
+            <label for="message-input" class="visually-hidden">Type a message</label>
+            <input
+                    type="text"
+                    id="message-input"
+                    name="message"
+                    placeholder="Write a message..."
+                    maxlength="2000"
+                    autocomplete="off"
+                    required
+            />
+            <button type="submit">Send</button>
+        </form>
+    </main>
+
+    <aside class="members" aria-label="Members">
+        <h2>Online</h2>
+        <ul class="member-list" id="member-list">
+            <li><span class="dot dot--online" aria-hidden="true"></span> Ana</li>
+            <li><span class="dot dot--online" aria-hidden="true"></span> You</li>
+        </ul>
+        <h2>Offline</h2>
+        <ul class="member-list">
+            <li><span class="dot" aria-hidden="true"></span> Ben</li>
+        </ul>
+    </aside>
+
+</div>
+</body>
+</html>
