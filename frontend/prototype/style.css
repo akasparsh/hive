@@ -1,0 +1,273 @@
+/* ============ 1. Theme tokens ============ */
+:root {
+  --bg: #ffffff;
+  --surface: #f4f5f7;
+  --border: #e1e4e8;
+  --text: #1f2328;
+  --text-muted: #656d76;
+  --accent: #f5b301;
+  --accent-text: #1f2328;
+  --own-bubble: #fff3cd;
+  --online: #2da44e;
+  --offline: #b1b8c0;
+
+  --radius: 0.5rem;
+  --gap: 0.75rem;
+  --font: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0d1117;
+    --surface: #161b22;
+    --border: #30363d;
+    --text: #e6edf3;
+    --text-muted: #8b949e;
+    --own-bubble: #3d3000;
+    --offline: #484f58;
+  }
+}
+
+/* ============ 2. Reset ============ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font);
+  line-height: 1.5;
+  color: var(--text);
+  background: var(--bg);
+}
+
+h1, h2, p, ul {
+  margin: 0;
+}
+
+ul {
+  padding: 0;
+  list-style: none;
+}
+
+/* ============ 3. Page layout (Grid) ============ */
+.app {
+  display: grid;
+  grid-template-columns: 15rem 1fr 13rem;
+  height: 100dvh;
+}
+
+/* ============ 4. Sidebar ============ */
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap);
+  padding: var(--gap);
+  background: var(--surface);
+  border-right: 1px solid var(--border);
+  overflow-y: auto;
+}
+
+.sidebar__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--gap);
+}
+
+.logo {
+  font-size: 1.25rem;
+}
+
+.room-link {
+  display: block;
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--radius);
+  color: var(--text);
+  text-decoration: none;
+}
+
+.room-link:hover {
+  background: var(--border);
+}
+
+.room-link--active {
+  background: var(--accent);
+  color: var(--accent-text);
+  font-weight: 600;
+}
+
+/* ============ 5. Chat column (Flexbox) ============ */
+.chat {
+  display: flex;
+  flex-direction: column;
+  min-height: 0; /* lets the inner messages area scroll */
+}
+
+.chat__header {
+  padding: var(--gap) 1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.chat__subtitle {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+
+.messages {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap);
+  padding: 1rem;
+}
+
+.message {
+  max-width: 70%;
+  padding: 0.5rem 0.75rem;
+  background: var(--surface);
+  border-radius: var(--radius);
+  align-self: flex-start;
+}
+
+.message--own {
+  align-self: flex-end;
+  background: var(--own-bubble);
+}
+
+.message__meta {
+  display: flex;
+  gap: 0.5rem;
+  align-items: baseline;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.message__author {
+  color: var(--text);
+}
+
+.message__text {
+  overflow-wrap: anywhere; /* long words/URLs must not break the layout */
+}
+
+/* ============ 6. Composer ============ */
+.composer {
+  display: flex;
+  gap: 0.5rem;
+  padding: var(--gap) 1rem;
+  border-top: 1px solid var(--border);
+}
+
+.composer input {
+  flex: 1;
+}
+
+/* ============ 7. Members panel ============ */
+.members {
+  padding: var(--gap);
+  background: var(--surface);
+  border-left: 1px solid var(--border);
+  overflow-y: auto;
+}
+
+.members h2 {
+  margin: 0.5rem 0;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.member-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.25rem 0;
+}
+
+.dot {
+  width: 0.6rem;
+  height: 0.6rem;
+  border-radius: 50%;
+  background: var(--offline);
+}
+
+.dot--online {
+  background: var(--online);
+}
+
+/* ============ 8. Form controls ============ */
+button,
+input {
+  font: inherit; /* form controls don't inherit fonts by default */
+}
+
+button {
+  padding: 0.5rem 0.9rem;
+  border: 0;
+  border-radius: var(--radius);
+  background: var(--accent);
+  color: var(--accent-text);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+button:hover {
+  filter: brightness(0.95);
+}
+
+input {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--bg);
+  color: var(--text);
+}
+
+:focus-visible {
+  outline: 3px solid #0969da;
+  outline-offset: 2px;
+}
+
+/* ============ 9. Utilities ============ */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ============ 10. Responsive ============ */
+@media (max-width: 56rem) {
+  .app {
+    grid-template-columns: 12rem 1fr;
+  }
+  .members {
+    display: none;
+  }
+}
+
+@media (max-width: 36rem) {
+  .app {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+  }
+  .sidebar {
+    border-right: 0;
+    border-bottom: 1px solid var(--border);
+    max-height: 30dvh;
+  }
+  .message {
+    max-width: 90%;
+  }
+}
